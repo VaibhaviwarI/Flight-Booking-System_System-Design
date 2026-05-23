@@ -39,7 +39,7 @@ async function getAirplanes(req,res){
 
 
     try{
-        const airplanes =  await AirplaneService.getAirplane();
+        const airplanes =  await AirplaneService.getAirplanes();
         SuccessResponse.data = airplanes
         return res.status(StatusCodes.OK).json(SuccessResponse)
 
@@ -52,10 +52,50 @@ async function getAirplanes(req,res){
 
 }
 
+async function getAirplane(req,res){
+
+
+    try{
+        const airplanes =  await AirplaneService.getAirplane(req.params.id);
+        SuccessResponse.data = airplanes
+        return res.status(StatusCodes.OK).json(SuccessResponse)
+
+    }catch(error){
+         ErrorResponse.error = error;
+          ErrorResponse.message = "Can't Find the Airplane"
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse)
+
+    }
+
+}
+
+
+async function destroyAirplane(req,res){
+
+
+    try{
+        const airplanes =  await AirplaneService.destroyAirplane(req.params.id);
+        SuccessResponse.data = airplanes
+        return res.status(StatusCodes.OK).json(SuccessResponse)
+
+    }catch(error){
+         ErrorResponse.error = error;
+            ErrorResponse.message = "Something went wrong while Destroying airplane"
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse)
+
+    }
+
+}
+
+
+
+
+
+
 
 
 
  module.exports = {
             createAirplane,
-            getAirplanes
+            getAirplanes,getAirplane, destroyAirplane
         }

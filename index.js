@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT
 
-router.use('/v1',  apiRoutes );
+app.use('/api', apiRoutes);
 
 
 

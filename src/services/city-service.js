@@ -12,6 +12,9 @@ async function createCity(data) {
         return city;
 
     }catch(error){
+        if(error.name == 'SequelizeUniqueConstraintError'){
+                throw error;
+        }
         throw error;
     }
 

@@ -23,6 +23,22 @@ async function createCity(data) {
 }
 
 
+async function deleteCity(cityId){
+
+    const city = await cityRepository.get(cityId);
+
+    if(!city){
+        throw new Error("City not found")
+    }
+
+    const deleted = await cityRepository.destroy(cityId);
+
+    return deleted;
+
+   
+}
+
+
 module.exports = {
-    createCity
+    createCity, deleteCity
 }

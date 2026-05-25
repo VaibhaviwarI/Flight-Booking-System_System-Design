@@ -31,6 +31,29 @@ async function createCity(req,res){
 
 }
 
+
+
+async function  deleteCity(req,res){
+
+    try{
+
+        const response = await CityService.deleteCity(req.params.id);
+
+        return res.status(StatusCodes.ACCEPTED).json({
+            msg : "City destroyed Successfully",
+            success : true
+        })
+    }catch(error){
+       
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            msg : "Error in deleting the city",
+            success : false
+        })
+
+    }
+
+}
+
 module.exports = {
-    createCity
+    createCity, deleteCity
 }
